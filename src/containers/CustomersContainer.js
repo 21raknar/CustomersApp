@@ -7,15 +7,10 @@ import CustomersList from "../components/CustomersList";
 import CustomerActions from "../components/CustomerActions";
 import { fetchCustomers } from "../actions/fetchCustomers";
 
-const customers = [
-  { dni: "27000000", name: "Juan Perez", age: 37 },
-  { dni: "30000000", name: "Otro", age: 35 },
-  { dni: "33000000", name: "Luis Martinez", age: 32 },
-];
-
 class CustomersContainer extends Component {
   static propTypes = {
     fetchCustomers: PropTypes.func.isRequired,
+    customers: PropTypes.array.isRequired,
   };
   componentDidMount() {
     this.props.fetchCustomers();
@@ -42,12 +37,16 @@ class CustomersContainer extends Component {
       <div>
         <AppFrame
           header={"Listado de Clientes"}
-          body={this.renderBody(customers)}
+          body={this.renderBody(this.props.customers)}
         ></AppFrame>
       </div>
     );
   }
 }
+
+CustomersContainer.defaultProps = {
+  customers: [],
+};
 
 export default withRouter(
   connect(null, { fetchCustomers })(CustomersContainer)
