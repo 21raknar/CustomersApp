@@ -49,10 +49,6 @@ class CustomersContainer extends Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchCustomers: () => dispatch(fetchCustomers()),
-});
-
 export default withRouter(
-  connect(null, mapDispatchToProps)(CustomersContainer)
+  connect(null, { fetchCustomers })(CustomersContainer)
 );
