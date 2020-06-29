@@ -6,6 +6,7 @@ import AppFrame from "../components/AppFrame";
 class CustomerContainer extends Component {
   static propTypes = {
     dni: PropTypes.string.isRequired,
+    customer: PropTypes.object.isRequired,
   };
 
   render() {
@@ -13,11 +14,14 @@ class CustomerContainer extends Component {
       <div>
         <AppFrame
           header={`Cliente ${this.props.dni}`}
-          body={<p>Datos del cliente</p>}
+          body={<p>Datos del cliente {this.props.customer.name}</p>}
         ></AppFrame>
       </div>
     );
   }
 }
+const mapStateToProps = (state, props) => ({
+  customer: state.customers.find((c) => c.dni === props.dni),
+});
 
-export default connect()(CustomerContainer);
+export default connect(mapStateToProps, null)(CustomerContainer);
