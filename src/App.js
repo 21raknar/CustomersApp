@@ -18,18 +18,19 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path="/" component={this.renderHome} />
-          <Route
-            exact
-            path="/customers"
-            component={this.renderCustomerListContainer}
-          />
+          <Route exact path="/" component={HomeContainer} />
+          <Route exact path="/customers" component={CustomersContainer} />
           <Switch>
             <Route
               path="/customers/new"
               component={this.renderCustomerNewContainer}
             />
-            <Route path="/customers/:dni" component={CustomerContainer} />
+            <Route
+              path="/customers/:dni"
+              render={(props) => (
+                <CustomerContainer dni={props.match.params.dni} />
+              )}
+            />
           </Switch>
         </div>
       </Router>

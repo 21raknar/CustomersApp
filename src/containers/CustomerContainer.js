@@ -4,13 +4,15 @@ import PropTypes from "prop-types";
 import AppFrame from "../components/AppFrame";
 
 class CustomerContainer extends Component {
-  static propTypes = {};
+  static propTypes = {
+    dni: PropTypes.string.isRequired,
+  };
 
   render() {
     return (
       <div>
         <AppFrame
-          header={`Cliente `}
+          header={`Cliente ${this.props.dni}`}
           body={<p>Datos del cliente</p>}
         ></AppFrame>
       </div>
