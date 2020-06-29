@@ -3,7 +3,7 @@ import { FETCH_CUSTOMERS } from "../constants";
 
 export const customers = handleActions(
   {
-    [FETCH_CUSTOMERS]: (state) => state,
+    [FETCH_CUSTOMERS]: (state, action) => [...action.payload],
   },
-  {}
+  []
 );
