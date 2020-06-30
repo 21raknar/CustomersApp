@@ -6,7 +6,6 @@ import { getCustomersByDni } from "../selectors/customers";
 import { Route } from "react-router-dom";
 import CustomerEdit from "../components/CustomerEdit";
 import CustomerData from "../components/CustomerData";
-import { customers } from "../reducers/customers";
 
 class CustomerContainer extends Component {
   static propTypes = {
