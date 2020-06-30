@@ -3,6 +3,10 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import AppFrame from "../components/AppFrame";
 import { getCustomersByDni } from "../selectors/customers";
+import { Route } from "react-router-dom";
+import CustomerEdit from "../components/CustomerEdit";
+import CustomerData from "../components/CustomerData";
+import { customers } from "../reducers/customers";
 
 class CustomerContainer extends Component {
   static propTypes = {
@@ -10,12 +14,24 @@ class CustomerContainer extends Component {
     customer: PropTypes.object.isRequired,
   };
 
+  renderBody = () => (
+    <Route
+      path="/customers/:dni/edit"
+      children={({ match }) => {
+        const CustomerControl = match ? CustomerEdit : CustomerData;
+
+        return <CustomerControl {...this.props.customer} />;
+      }}
+    />
+  );
+
   render() {
     return (
+      //<p>Datos del cliente {this.props.customer.name}</p>
       <div>
         <AppFrame
           header={`Cliente ${this.props.dni}`}
-          body={<p>Datos del cliente {this.props.customer.name}</p>}
+          body={this.renderBody()}
         ></AppFrame>
       </div>
     );
