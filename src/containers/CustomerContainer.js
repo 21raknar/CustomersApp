@@ -33,6 +33,10 @@ class CustomerContainer extends Component {
     this.props.history.goBack();
   };
 
+  handleOnSubmitSuccess = () => {
+    this.props.history.goBack();
+  };
+
   renderBody = () => (
     <Route
       path="/customers/:dni/edit"
@@ -45,6 +49,7 @@ class CustomerContainer extends Component {
               {...this.props.customer}
               onSubmit={this.handleSubmit}
               onBack={this.handleOnBack}
+              onSubmitSuccess={this.handleOnSubmitSuccess}
             />
           );
         }
