@@ -14,7 +14,9 @@ class CustomersContainer extends Component {
     customers: PropTypes.array.isRequired,
   };
   componentDidMount() {
-    this.props.fetchCustomers();
+    if (this.props.customers.length === 0) {
+      this.props.fetchCustomers();
+    }
   }
 
   handleAddNew = () => {
