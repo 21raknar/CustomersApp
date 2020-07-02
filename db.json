@@ -12,12 +12,17 @@
       "name": "Otro",
       "age": 32
     },
-
     {
       "id": "33000000",
       "dni": "33000000",
       "name": "LUIS MARTINEZ",
       "age": 32
+    },
+    {
+      "name": "NUEVO CLIENTEASDD",
+      "dni": "99998888",
+      "age": 25,
+      "id": "fjfpvoP"
     }
   ],
   "posts": [

@@ -37,7 +37,8 @@ const toUpper = (value) => value && value.toUpperCase();
 const toLower = (value) => value && value.toLowerCase();
 
 const onlyGrow = (value, previousValue, values) =>
-  value && previousValue && (value > previousValue ? value : previousValue);
+  value &&
+  (!previousValue ? value : value > previousValue ? value : previousValue);
 
 //Variables de redux form: submitting (enviando el formulario), pristine (si no se ha hecho alguna modificación)
 //submitSucceeded (se envia correctamente el formulario)
