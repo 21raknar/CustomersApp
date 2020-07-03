@@ -22,14 +22,6 @@ const validate = (values) => {
   return error;
 };
 
-const MyField = ({ input, meta, type, label, name }) => (
-  <div>
-    <label htmlFor={name}>{label}</label>
-    <input {...input} type={!type ? "text" : type} />
-    {meta.touched && meta.error && <span>{meta.error}</span>}
-  </div>
-);
-
 const toNumber = (value) => value && Number(value);
 
 const toUpper = (value) => value && value.toUpperCase();
@@ -43,7 +35,23 @@ const onlyGrow = (value, previousValue, values) =>
 //Variables de redux form: submitting (enviando el formulario), pristine (si no se ha hecho alguna modificación)
 //submitSucceeded (se envia correctamente el formulario)
 class CustomerEdit extends Component {
-  componentDidMount() {}
+  componentDidMount() {
+    if (this.txt) {
+      this.txt.focus();
+    }
+  }
+
+  renderField = ({ input, meta, type, label, name, withFocus }) => (
+    <div>
+      <label htmlFor={name}>{label}</label>
+      <input
+        {...input}
+        type={!type ? "text" : type}
+        ref={withFocus && ((txt) => (this.txt = txt))}
+      />
+      {meta.touched && meta.error && <span>{meta.error}</span>}
+    </div>
+  );
 
   render() {
     const {
@@ -58,8 +66,9 @@ class CustomerEdit extends Component {
         <h2>Edición del cliente</h2>
         <form onSubmit={handleSubmit}>
           <Field
+            withFocus
             name="name"
-            component={MyField}
+            component={this.renderField}
             type="text"
             label="Nombre"
             parse={toUpper}
@@ -67,14 +76,14 @@ class CustomerEdit extends Component {
           ></Field>
           <Field
             name="dni"
-            component={MyField}
+            component={this.renderField}
             type="text"
             validate={isNumber}
             label="Dni"
           ></Field>
           <Field
             name="age"
-            component={MyField}
+            component={this.renderField}
             type="number"
             validate={isNumber}
             label="Edad"
